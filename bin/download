@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+download() {
+  if command -v curl &>/dev/null; then
+    echo "curl already installed"
+  else
+    echo "curl not installed! Please install curl before proceeding."
+    exit 1
+  fi
+
+  local TRIPPY_VERSION="$1"
+  local TRIPPY_DOWNLOAD_PATH="${2}"
+
+  os=$(uname -s | tr '[:upper:]' '[:lower:]')
+  machine=$(uname -m | tr '[:upper:]' '[:lower:]')
+
+  os_version=""
+  case "$os" in
+    "linux")
+      os_version="unknown-linux"
+      ;;
+    "darwin")
+      os_version="apple-darwin"
+      ;;
+    *)
+      # try Windows; if it's not Linux and it's not MacOS, try Windows.
+      os_version="pc-windows"
+      ;;
+  esac
+
+  machine_type=""
+  case "$machine" in
+    "x86_64")
+      machine_type="x86_64" # sometimes called amd64
+      ;;
+    "aarch64")
+      machine_type="aarch64" # sometimes called arm64
+      ;;
+    *)
+      echo "Architecture not recognized or not supported."
+      exit 1
+      ;;
+  esac
+
+  echo "Determined operating system to be ${os_version}."
+  echo "Determined machine type to be ${machine_type}."
+
+  download_file="trippy-${TRIPPY_VERSION}-${machine_type}-${os_version}-gnu.tar.gz"
+  download_url="https://github.com/fujiapple852/trippy/releases/download/${TRIPPY_VERSION}/${download_file}"
+
+  echo "Downloading Trippy ${TRIPPY_VERSION} from $download_url"
+  binary_temp_file="${TRIPPY_DOWNLOAD_PATH}/${download_file}"
+  curl -fsSL -o "${binary_temp_file}" "$download_url"
+  curl_exit_code=$?
+
+  if [ "$curl_exit_code" -ne 0 ]; then
+    echo "Failed to download Trippy."
+    exit 1
+  fi
+
+  echo "Extracting Trippy ${TRIPPY_VERSION} into ${TRIPPY_DOWNLOAD_PATH}"
+  tar -xzf "${binary_temp_file}" -C "${TRIPPY_DOWNLOAD_PATH}" --strip-components=1
+
+  ## catch any accidential deletion if somebody set the wrong temp_dir
+  if [ -d "${TRIPPY_DOWNLOAD_PATH}" ]; then
+    if [ -f "${binary_temp_file}" ]; then
+      echo "Deleting temp files ${binary_temp_file}."
+      rm -rf "$binary_temp_file"
+    fi
+  fi
+}
+
+## Useful for testing this script locally.
+# download "0.9.0" "./tmp"

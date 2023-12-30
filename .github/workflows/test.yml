@@ -1,0 +1,29 @@
+name: CI
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "bin/*"
+      - ".github/workflows/*"
+  pull_request:
+    paths:
+      - "bin/*"
+      - ".github/workflows/*"
+
+jobs:
+  plugin_test:
+    name: asdf plugin test
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: asdf-vm/actions/plugin-test@v3
+        with:
+          command: trippy --version
+        env:
+          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
