@@ -1,36 +1,54 @@
-# asdf-plugin-template [![Build](https://github.com/asdf-vm/asdf-plugin-template/actions/workflows/build.yml/badge.svg)](https://github.com/asdf-vm/asdf-plugin-template/actions/workflows/build.yml) [![Lint](https://github.com/asdf-vm/asdf-plugin-template/actions/workflows/lint.yml/badge.svg)](https://github.com/asdf-vm/asdf-plugin-template/actions/workflows/lint.yml)
+# asdf-trippy
 
-This is an [asdf-vm plugin](https://asdf-vm.com/#/plugins-create) template with CI to run [Shellcheck](https://github.com/koalaman/shellcheck) and testing with the [asdf test GitHub Action](https://github.com/asdf-vm/actions).
+![CI](https://github.com/fartbagxp/asdf-trippy/workflows/CI/badge.svg)
+![Lint](https://github.com/fartbagxp/asdf-trippy/workflows/Lint/badge.svg)
+[![License](https://img.shields.io/badge/license-MIT-blue)](https://choosealicense.com/licenses/mit/)
+[![Doc](https://img.shields.io/badge/Doc-asdf-blue)](https://asdf-vm.com/)
 
-## Usage
+This is a [trippy](https://github.com/fujiapple852/trippy) plugin for the [asdf version manager](https://asdf-vm.com/).
 
-1. [Generate](https://github.com/asdf-vm/asdf-plugin-template/generate) a new repository based on this template.
-1. Clone it and run `bash setup.bash`.
-1. Force push to your repo: `git push --force-with-lease`.
-1. Adapt your code at the TODO markers. To find the markers: `git grep TODO`.
-1. To develop your plugin further, please read [the plugins create section of the docs](https://asdf-vm.com/plugins/create.html).
+## Contents
 
->A feature of this plugin-template when hosted on GitHub is the use of [release-please](https://github.com/googleapis/release-please), an automated release tool. It leverages [Conventional Commit messages](https://www.conventionalcommits.org/) to determine semver release type, see the [documentation](https://github.com/googleapis/release-please).
+- [Plugin Dependencies](#plugin-dependencies)
+- [Install](#install)
+- [License](#license)
 
-## Contributing
+## Plugin Dependencies
 
-Contributions welcome!
+- `curl` - for trippy downloads from upstream releases
 
-1. Install `asdf` tools
+## Install
 
-    ```shell
-    asdf plugin add shellcheck https://github.com/luizm/asdf-shellcheck.git
-    asdf plugin add shfmt https://github.com/luizm/asdf-shfmt.git
-    asdf install
-    ```
+Plugin:
 
-1. Develop!
+```bash
+asdf plugin-add trippy https://github.com/fartbagxp/asdf-trippy
+```
 
-1. Lint & Format
+trippy:
 
-    ```shell
-    ./scripts/format.bash
-    ./scripts/lint.bash
-    ```
+```bash
+# Show all installable versions
+asdf list-all trippy
 
-1. PR changes
+# Install specific version
+asdf install trippy latest
+
+# Set a version globally (in your ~/.tool-versions file)
+asdf global trippy latest
+
+# Run trippy
+trip --version
+> trip 0.90.0
+[...]
+```
+
+## Uninstall
+
+```bash
+asdf plugin remove trippy
+```
+
+## License
+
+See [LICENSE](LICENSE).
