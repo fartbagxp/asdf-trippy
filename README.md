@@ -7,6 +7,10 @@
 
 This is a [trippy](https://github.com/fujiapple852/trippy) plugin for the [asdf version manager](https://asdf-vm.com/).
 
+## Issues
+
+- Need to figure out how to map which [binary download](https://github.com/fujiapple852/trippy#binary-asset-download) the user's installation is using.
+
 ## Contents
 
 - [Plugin Dependencies](#plugin-dependencies)

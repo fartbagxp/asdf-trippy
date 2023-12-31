@@ -19,7 +19,7 @@ download() {
   os_version=""
   case "$os" in
     "linux")
-      os_version="unknown-linux"
+      os_version="unknown-linux-gnu"
       ;;
     "darwin")
       os_version="apple-darwin"
@@ -47,7 +47,7 @@ download() {
   echo "Determined operating system to be ${os_version}."
   echo "Determined machine type to be ${machine_type}."
 
-  download_file="trippy-${TRIPPY_VERSION}-${machine_type}-${os_version}-gnu.tar.gz"
+  download_file="trippy-${TRIPPY_VERSION}-${machine_type}-${os_version}.tar.gz"
   download_url="https://github.com/fujiapple852/trippy/releases/download/${TRIPPY_VERSION}/${download_file}"
 
   echo "Downloading Trippy ${TRIPPY_VERSION} from $download_url"
