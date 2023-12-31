@@ -24,6 +24,6 @@ jobs:
     steps:
       - uses: asdf-vm/actions/plugin-test@v3
         with:
-          command: trip --version
+          command: which trip && trip --version
         env:
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
