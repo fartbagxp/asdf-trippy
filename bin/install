@@ -20,7 +20,7 @@ install() {
   chmod +x "${ASDF_INSTALL_PATH}/trip"
   mkdir -p "${bin_install_path}"
   mv "${ASDF_INSTALL_PATH}/trip" "${bin_install_path}"
-  
+
   if [ -x "${bin_path}" ]; then
     echo "trip ${ASDF_INSTALL_VERSION} has been installed"
     exit 0
