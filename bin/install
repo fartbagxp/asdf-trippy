@@ -18,6 +18,7 @@ install() {
     mv "${ASDF_INSTALL_PATH}/trip.exe" "${ASDF_INSTALL_PATH}/trip"
   fi
   chmod +x "${ASDF_INSTALL_PATH}/trip"
+  mkdir -p "${bin_install_path}"
   mv "${ASDF_INSTALL_PATH}/trip" "${bin_path}"
 
   if [ -x "$ASDF_INSTALL_PATH/trip" ]; then
