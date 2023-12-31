@@ -9,26 +9,18 @@ ASDF_INSTALL_TYPE=${ASDF_INSTALL_TYPE:-version  }
 install() {
   # shellcheck disable=SC1091
   source "$(dirname "$0")/download"
-
-  local bin_install_path="$ASDF_INSTALL_PATH/bin"
-  local bin_path="${bin_install_path}/trip"
-
-  mkdir -p "$bin_path"
   download "${ASDF_INSTALL_VERSION}" "${ASDF_INSTALL_PATH}"
-
-  if [[ -f "${ASDF_INSTALL_PATH}/trippy" ]]; then
-    mv "${ASDF_INSTALL_PATH}/trip" "${bin_path}"
-    mv "${ASDF_INSTALL_PATH}/trip.exe" "${bin_path}"
+  if [[ -f "${ASDF_INSTALL_PATH}/trip.exe" ]]; then
+    mv "${ASDF_INSTALL_PATH}/trip.exe" "${ASDF_INSTALL_PATH}/trip"
   fi
-  chmod +x "${bin_path}"
-  rm -rf "${ASDF_INSTALL_PATH}/trip*"
+  chmod +x "${ASDF_INSTALL_PATH}/trip"
 
-  if [ -x "$ASDF_INSTALL_PATH/bin/trip" ]; then
-    echo "trip $ASDF_INSTALL_VERSION has been installed"
+  if [ -x "$ASDF_INSTALL_PATH/trip" ]; then
+    echo "trip ${ASDF_INSTALL_VERSION} has been installed"
     exit 0
   else
     echo "An error ocurred while installing trippy $ASDF_INSTALL_VERSION" 1>&2
-    rm -rf "${ASDF_INSTALL_PATH}/trip*"
+    rm -rf "${ASDF_INSTALL_PATH}/trip"
     exit 1
   fi
 }
