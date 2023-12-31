@@ -20,14 +20,18 @@ install() {
   chmod +x "${ASDF_INSTALL_PATH}/trip"
   mkdir -p "${bin_install_path}"
   mv "${ASDF_INSTALL_PATH}/trip" "${bin_install_path}"
-  ls -l "${bin_install_path}"
-
-  if [ -x "$ASDF_INSTALL_PATH/trip" ]; then
+  
+  if [ -x "${bin_path}" ]; then
     echo "trip ${ASDF_INSTALL_VERSION} has been installed"
     exit 0
   else
     echo "An error ocurred while installing trippy ${ASDF_INSTALL_VERSION}" 1>&2
-    rm -rf "${ASDF_INSTALL_PATH}/trip"
+    if [ -f "${ASDF_INSTALL_PATH}/trip" ]; then
+      rm -rf "${ASDF_INSTALL_PATH}/trip"
+    fi
+    if [ -f "${bin_install_path}/trip" ]; then
+      rm -rf "${bin_install_path}/trip"
+    fi
     exit 1
   fi
 }
