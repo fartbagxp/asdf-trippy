@@ -1,6 +1,5 @@
 # asdf-trippy
 
-![CI](https://github.com/fartbagxp/asdf-trippy/workflows/CI/badge.svg)
 ![Lint](https://github.com/fartbagxp/asdf-trippy/workflows/Lint/badge.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://choosealicense.com/licenses/mit/)
 [![Doc](https://img.shields.io/badge/Doc-asdf-blue)](https://asdf-vm.com/)
