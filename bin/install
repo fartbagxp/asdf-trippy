@@ -39,4 +39,4 @@ install() {
 install
 
 ## For local testing
-## ASDF_INSTALL_TYPE="" ASDF_INSTALL_VERSION="0.9.0" ASDF_INSTALL_PATH="$HOME/.asdf/shims" bash install
+## ASDF_INSTALL_TYPE="" ASDF_INSTALL_VERSION="0.13.0" ASDF_INSTALL_PATH="$HOME/.asdf/shims" bash install

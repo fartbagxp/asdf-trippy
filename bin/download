@@ -13,6 +13,12 @@ download() {
   local TRIPPY_VERSION="$1"
   local TRIPPY_DOWNLOAD_PATH="${2}"
 
+  # Resolve "latest" to actual version
+  if [ "$TRIPPY_VERSION" = "latest" ]; then
+    TRIPPY_VERSION=$("$(dirname "$0")/list-all" | tail -n 1)
+    echo "Resolved 'latest' to version: ${TRIPPY_VERSION}"
+  fi
+
   os=$(uname -s | tr '[:upper:]' '[:lower:]')
   machine=$(uname -m | tr '[:upper:]' '[:lower:]')
 
@@ -73,4 +79,4 @@ download() {
 }
 
 ## Useful for testing this script locally.
-# download "0.9.0" "./tmp"
+# download "0.13.0" "./tmp"
