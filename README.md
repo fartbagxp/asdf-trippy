@@ -66,7 +66,7 @@ asdf global trippy latest
 
 # Run trippy
 trip --version
-> trip 0.90.0
+> trip 0.13.0
 [...]
 ```
 
