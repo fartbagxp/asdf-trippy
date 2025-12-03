@@ -41,7 +41,7 @@ download() {
     "x86_64")
       machine_type="x86_64" # sometimes called amd64
       ;;
-    "aarch64")
+    "aarch64" | "arm64")
       machine_type="aarch64" # sometimes called arm64
       ;;
     *)
